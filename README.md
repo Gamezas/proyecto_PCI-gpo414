@@ -1,5 +1,5 @@
-Contexto
+CONTEXTO\
 El juego de mesa "Dungeons & Dragons" requiere que los jugadores creen un personaje utilizando una "Hoja de personaje" el problema es que una gran cantidad de personas que se interesan en este juego de rol no se adentran debido a que llenar la hoja suele ser muy pesado, ya que requiere que el jugador lea muchas estadisticas, valores, kits y cosas que si alguien ya experimentado no explica a alguien nuevo porbablemente no entienda.
 
-Objetivo
+OBJETIVO\
 La meta de este proyecto es hacer un código que ayude a los jugadores nuevos a crear a sus personajes sin tantas complicaciones en cuanto a calculos, estadisticas, kits de armas, entre otras cosas. Este código se realizara usando las clases y razas del "Player's handbook" de la 5ta edición de D&D, esto para facilitar las opciones que el código manejará al igual que las opciones que tienen los jugadores nuevos para no abrumarlos con tanta información. Se enfecoará en los aspectos de raza, clase, nombre de personaje, nombre de jugador, clase de armadura, velocidad, puntos de vida, puntos de habilidad, tiradas de salvación y habilidades
