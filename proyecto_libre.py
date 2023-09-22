@@ -39,21 +39,37 @@ def modificador (num1):
     else:
         mod = 0 + 6
         return mod
+
 """
 Esta función aunque es simple permite calcular el score total del jugador en 
-una habilidad sumando el score fijo de su rza y lo conseguido en el dado
+una habilidad sumando el score fijo de su raza y lo conseguido en el dado
 """
-"""
-Esta funcion a pesar de ser simple permite indetificar su uso y facilitar el 
-uso de operadores del código
-"""
+
 def score (atributo,dado):
     return atributo + dado
 
+"""
+Esta función permite simplificar el código y permitir el uso de ciclos con el
+objetivo que el usuario introduzca un valor correcto para así evitar que hagan
+trampa a la hora de generar su personaje por tener mejores estadisticas a las
+permitidas
+"""
+
+def rango ():
+    valor = int(input())
+    while valor < 1 or valor > 20:
+        valor = int(input("El valor no puede ser menor a 1 o mayor a 20 " +
+    "vuelve a intentarlo: "))
+
+"""
+Aquí empieza el código, se le da la bienvenida al usuario y se toman sus datos
+para iniciar su personaje
+"""
 print("Bienvenido al simplificador de hoja de personaje de D&D")
 nombre_j = str(input("¿Cuál es tu nombre aventurero? "))
 eleccion1 = int(input("Selecciona con un número que raza te gustaría jugar" +
- " 1. Humano, 2. Tiefling, 3.Halfling, 4.Dwarf, 5.Elfo, 6.Gnomo: "))
+ " 1. Humano, 2. Tiefling, 3.Halfling, 4.Dwarf, 5.Elf, 6.Gnome, " + 
+ "7. Half-Orc, 8. Half-Elf: "))
 """
 Aquí se coloca la elección de razas lo que provoca que algunas estadisticas 
 tengan ciertos atributos a favor desde un inicio de igual forma ayuda a mantener
@@ -108,7 +124,7 @@ elif eleccion1 == 5:
     speed = "30 ft"
     raza = "Elfo"
 
-else:
+elif eleccion1 == 6:
     strg_atr = 0
     dex_atr = 0
     const_atr = 0
@@ -117,22 +133,41 @@ else:
     char_atr = 0
     speed = "25 ft"
     raza = "Gnomo"
-    
+
+elif eleccion1 == 7:
+    strg_atr = 2
+    dex_atr = 0
+    const_atr = 1
+    smart_atr = 0
+    wisd_atr = 0
+    char_atr = 0
+    speed = "30 ft"
+    raza = "Half-Orc"
+
 """
 Las estadísticas de D&D son medidas con una tirada de un dado de 20 caras
 aquí el usuario podra introducir los valores obtenido por sus tiradas y estas
 se añadiran más adelante con los atributos iniciales para así identificar 
 el modificador correcto
-"""
-print ("Bien ahora vayamos con tus valores de habilidad")
-strg = int(input("Tira un dado de 20 caras y valor escribelo aquí" +
-"este será tu valor de fuerza: "))
 
-dex = int(input("Tira otro dado de 20 para tu valor de destreza: "))
-const = int(input("Tira otro dado de 20 para tu valor de constitución: "))
-smart = int(input("Tira otro dado de 20 para tu valor de inteligencia: "))
-wisd = int(input("Tira otro dado de 20 para tu valor de sabiduría: "))
-char = int(input("Tira otro dado de 20 para tu valor de carisma: "))
+Se aprovechan ciclos aquí ya que los valores de las tiradas no pueden ser 
+menores a 1 o mayores a 20, esto para evitar que los jugadores hagan trampa
+en la creación de sus estadísticas
+"""
+
+print("Tira un dado de 20 caras y valor escribelo aquí" +
+"este será tu valor de fuerza: ")
+strg = rango()
+print("Tira otro dado de 20 para tu valor de destreza: ")
+dex = rango()
+print("Tira otro dado de 20 para tu valor de constitución: ")
+const = rango()
+print("Tira otro dado de 20 para tu valor de inteligencia: ")
+smart = rango()
+print("Tira otro dado de 20 para tu valor de sabiduría: ")
+wisd = rango()
+print("Tira otro dado de 20 para tu valor de carisma: ")
+char = rango()
 
 """
 Utilizando la función score sacamos el score total de las habilidades del 
