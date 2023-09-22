@@ -69,7 +69,7 @@ print("Bienvenido al simplificador de hoja de personaje de D&D")
 nombre_j = str(input("¿Cuál es tu nombre aventurero? "))
 eleccion1 = int(input("Selecciona con un número que raza te gustaría jugar" +
  " 1. Humano, 2. Tiefling, 3.Halfling, 4.Dwarf, 5.Elf, 6.Gnome, " + 
- "7. Half-Orc, 8. Half-Elf: "))
+ "7. Half-Orc: "))
 """
 Aquí se coloca la elección de razas lo que provoca que algunas estadisticas 
 tengan ciertos atributos a favor desde un inicio de igual forma ayuda a mantener
