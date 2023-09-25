@@ -60,6 +60,7 @@ def rango ():
     while valor < 1 or valor > 20:
         valor = int(input("El valor no puede ser menor a 1 o mayor a 20 " +
     "vuelve a intentarlo: "))
+    return valor
 
 """
 Aquí empieza el código, se le da la bienvenida al usuario y se toman sus datos
