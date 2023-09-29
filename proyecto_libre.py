@@ -77,73 +77,19 @@ tengan ciertos atributos a favor desde un inicio de igual forma ayuda a mantener
 un seguimiento de las mismas
 """
 if eleccion1 == 1:
-    strg_atr = 1
-    dex_atr = 1
-    const_atr = 1
-    smart_atr = 1
-    wisd_atr = 1
-    char_atr = 1
-    speed = "30 ft"
-    raza = "Humano"
+    stats = [1,1,1,1,1,1,"30 ft","Humanos"]
 elif eleccion1 == 2:
-    strg_atr = 0
-    dex_atr = 0
-    const_atr = 0
-    smart_atr = 1
-    wisd_atr = 0
-    char_atr = 2
-    speed = "30 ft"
-    raza = "Tiefling"
-
+    stats = [0,0,0,1,0,2,"30ft","Tiefling"]
 elif eleccion1 == 3:
-    strg_atr = 0
-    dex_atr = 2
-    const_atr = 0
-    smart_atr = 0
-    wisd_atr = 0
-    char_atr = 0
-    speed = "25 ft"
-    raza = "Halfling"
-
+    stats = [0,2,0,0,0,0,"25ft","Halfling"]
 elif eleccion1 == 4:
-    strg_atr = 0
-    dex_atr = 0
-    const_atr = 2
-    smart_atr = 0
-    wisd_atr = 0
-    char_atr = 0
-    speed = "25 ft"
-    raza = "Dwarf"
-
+    stats = [0,0,2,0,0,0,"25ft","Dwarf"]
 elif eleccion1 == 5:
-    strg_atr = 0
-    dex_atr = 2
-    const_atr = 0
-    smart_atr = 0
-    wisd_atr = 0
-    char_atr = 0
-    speed = "30 ft"
-    raza = "Elfo"
-
+    stats = [0,2,0,0,0,0,"30ft","Elf"]
 elif eleccion1 == 6:
-    strg_atr = 0
-    dex_atr = 0
-    const_atr = 0
-    smart_atr = 0
-    wisd_atr = 2
-    char_atr = 0
-    speed = "25 ft"
-    raza = "Gnomo"
-
+    stats = [0,0,0,0,2,0,"25ft","Gnome"]
 elif eleccion1 == 7:
-    strg_atr = 2
-    dex_atr = 0
-    const_atr = 1
-    smart_atr = 0
-    wisd_atr = 0
-    char_atr = 0
-    speed = "30 ft"
-    raza = "Half-Orc"
+    stats = [2,0,1,0,0,0,"30ft","Half-Orc"]
 
 """
 Las estadísticas de D&D son medidas con una tirada de un dado de 20 caras
@@ -174,12 +120,12 @@ char = rango()
 Utilizando la función score sacamos el score total de las habilidades del 
 usuario
 """
-strg_sc = score(strg_atr,strg)
-dex_sc = score(dex_atr,dex)
-const_sc = score(const_atr, const)
-smart_sc = score(smart_atr,smart)
-wisd_sc = score(wisd_atr,wisd)
-char_sc = score(char_atr,char)
+strg_sc = score(stats[0],strg)
+dex_sc = score(stats[1],dex)
+const_sc = score(stats[2], const)
+smart_sc = score(stats[3],smart)
+wisd_sc = score(stats[4],wisd)
+char_sc = score(stats[5],char)
 """
 Utilizando la función modificador conseguimos el valor del modificador de las
 habilidades del usuraio
@@ -201,25 +147,17 @@ eleccion2 = int(input("¿Que clase quieres jugar? 1.Rogue, 2.Ranger, " +
 "3.Barbarian, 4.Bard: "))
 
 if eleccion2 == 1:
-    clase = "Rogue"
-    p_bonus = "+2"
-    hit_dice = "1d8"
-    hit_points = 8 + const_mod
+    clase = ["Rogue","+2","1d8"]
+    clase.append(8 + const_mod)
 elif eleccion2 == 2:
-    clase = "Ranger"
-    p_bonus = "+2"
-    hit_dice = "1d10"
-    hit_points = 10 + const_mod
+    clase = ["Ranger","+2","1d10"]
+    calse.append(10 + const_mod)
 elif eleccion2 == 3:
-    clase = "Barbarian"
-    p_bonus = "+2"
-    hit_dice = "1d12"
-    hit_points = 12 + const_mod
+    clase = ["Barbarian","+2","1d12"]
+    calse.append(12 + const_mod)
 else:
-    clase = "Bard"
-    p_bonus = "+2"
-    hit_dice = "1d8"
-    hit_points = 8 + const_mod
+    clase = ["Bard","+2","1d8"]
+    clase.append(8 + const_mod)
 
 nombre_p = str(input("Para terminar ¿cómo vas a llamar a tu personaje? "))
 
@@ -229,12 +167,12 @@ Se le dan al usuario todas las estadisticas calculadas por el programa
 print ("Tu personaje esta listo!!")
 print ("Jugador: ", nombre_j)
 print ("Presonaje: ", nombre_p)
-print ("Tu raza es ", raza)
-print ("Tu clase es ", clase)
-print ("La velocidad de tu personaje es ", speed)
-print ("Bonus de competencia: ", p_bonus)
-print ("Puntos de vida o hit dice: ", hit_points)
-print ("El dado que usarás para hacer daño o hit dice es:", hit_dice)
+print ("Tu raza es ", stats[7])
+print ("Tu clase es ", clase[0])
+print ("La velocidad de tu personaje es ", stats[6])
+print ("Bonus de competencia: ", clase[1])
+print ("Puntos de vida o hit dice: ", clase[3])
+print ("El dado que usarás para hacer daño o hit dice es:", clase[2])
 print ("Tu score de habilidad en fuerza es: ", strg_sc, "y tu modificador es:",
 strg_mod)
 print ("Tu score de habilidad en destreza es: ", dex_sc, "y tu modificador",
