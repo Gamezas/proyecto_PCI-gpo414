@@ -69,27 +69,75 @@ para iniciar su personaje
 print("Bienvenido al simplificador de hoja de personaje de D&D")
 nombre_j = str(input("¿Cuál es tu nombre aventurero? "))
 eleccion1 = int(input("Selecciona con un número que raza te gustaría jugar" +
- " 1. Humano, 2. Tiefling, 3.Halfling, 4.Dwarf, 5.Elf, 6.Gnome, " + 
- "7. Half-Orc: "))
+ " 1. Human, 2. Tiefling, 3.Halfling, 4.Dwarf, 5.Elf, 6.Gnome, " + 
+ "7. Half-Orc 8.Dragonborn: "))
 """
-Aquí se coloca la elección de razas lo que provoca que algunas estadisticas 
-tengan ciertos atributos a favor desde un inicio de igual forma ayuda a mantener
-un seguimiento de las mismas
+Aquí el jugador elige una raza de las que ofrece el juego, todas tiene ciertos
+atributos a favor dando puntos extra de inicio en algunas habilidades, esto se
+guarda en una lista llamada "stats" que busca llevar todos los datos del 
+jugador en una sola variable, la raza Dragonborn es un poco más especial
+ya que se debe elegir una "Dragonic Ancestry" que es algo unico de esta raza
+por lo que tiene una función de elecciones extra a diferencia de las otras
 """
 if eleccion1 == 1:
-    stats = [1,1,1,1,1,1,"30 ft","Humanos"]
+    stats = [[1,1,1,1,1,1],["30 ft","Humanos"]]
 elif eleccion1 == 2:
-    stats = [0,0,0,1,0,2,"30ft","Tiefling"]
+    stats = [[0,0,0,1,0,2],["30ft","Tiefling"]]
 elif eleccion1 == 3:
-    stats = [0,2,0,0,0,0,"25ft","Halfling"]
+    stats = [[0,2,0,0,0,0],["25ft","Halfling"]]
 elif eleccion1 == 4:
-    stats = [0,0,2,0,0,0,"25ft","Dwarf"]
+    stats = [[0,0,2,0,0,0],["25ft","Dwarf"]]
 elif eleccion1 == 5:
-    stats = [0,2,0,0,0,0,"30ft","Elf"]
+    stats = [[0,2,0,0,0,0],["30ft","Elf"]]
 elif eleccion1 == 6:
-    stats = [0,0,0,0,2,0,"25ft","Gnome"]
+    stats = [[0,0,0,0,2,0],["25ft","Gnome"]]
 elif eleccion1 == 7:
-    stats = [2,0,1,0,0,0,"30ft","Half-Orc"]
+    stats = [[2,0,1,0,0,0],["30ft","Half-Orc"]]
+elif eleccion1 == 8:
+    stats = [[2,0,0,0,0,1],["30ft","Dragonborn"]]
+    eleccion_drag = int(input("Elige que Dragonic Ancestry te gustaría " + 
+    "1.Black, 2.Blue, 3.Brass, 4.Bronze, 5.Copper, 6.Gold, " +
+    "7. Green, 8.Red, 9. Silver, 10. White: "))
+    if eleccion_drag == 1:
+        stats[1].append("Black")
+        stats[1].append("Acid")
+        stats[1].append("5 by 30 ft. line (Dex. save)")
+    elif eleccion_drag == 2:
+        stats[1].append("Blue")
+        stats[1].append("Lightning")
+        stats[1].append("5 by 30 ft. line (Dex. save)")
+    elif eleccion_drag == 3:
+        stats[1].append("Brass")
+        stats[1].append("Fire")
+        stats[1].append("5 by 30 ft. line (Dex. save)")
+    elif eleccion_drag == 4:
+        stats[1].append("Bronze")
+        stats[1].append("Lightning")
+        stats[1].append("5 by 30 ft. line (Dex. save)")
+    elif eleccion_drag == 5:
+        stats[1].append("Copper")
+        stats[1].append("Acid")
+        stats[1].append("5 by 30 ft. line (Dex. save)")
+    elif eleccion_drag == 6:
+        stats[1].append("Gold")
+        stats[1].append("Fire")
+        stats[1].append("15 ft. cone (Dex. save)")
+    elif eleccion_drag == 7:
+        stats[1].append("Green")
+        stats[1].append("Poison")
+        stats[1].append("15 ft. cone (Con. save)")
+    elif eleccion_drag == 8:
+        stats[1].append("Red")
+        stats[1].append("Fire")
+        stats[1].append("15 ft. cone (Dex. save)")
+    elif eleccion_drag == 9:
+        stats[1].append("Silver")
+        stats[1].append("Cold")
+        stats[1].append("15 ft. cone (Con. save)")
+    else:
+        stats[1].append("White")
+        stats[1].append("Cold")
+        stats[1].append("15 ft. cone (Con. save)")
 
 """
 Las estadísticas de D&D son medidas con una tirada de un dado de 20 caras
@@ -120,15 +168,16 @@ char = rango()
 Utilizando la función score sacamos el score total de las habilidades del 
 usuario
 """
-strg_sc = score(stats[0],strg)
-dex_sc = score(stats[1],dex)
-const_sc = score(stats[2], const)
-smart_sc = score(stats[3],smart)
-wisd_sc = score(stats[4],wisd)
-char_sc = score(stats[5],char)
+strg_sc = score(stats[0][0],strg)
+dex_sc = score(stats[0][1],dex)
+const_sc = score(stats[0][2], const)
+smart_sc = score(stats[0][3],smart)
+wisd_sc = score(stats[0][4],wisd)
+char_sc = score(stats[0][5],char)
 """
 Utilizando la función modificador conseguimos el valor del modificador de las
-habilidades del usuraio
+habilidades del usuraio este modificador tiene cierta influencia en algunas
+estadísticas como la salud del jugador
 """
 strg_mod = modificador(strg_sc)
 dex_mod = modificador(dex_sc)
@@ -140,25 +189,66 @@ char_mod = modificador(char_sc)
 """
 Aquí el jugador va a poder elegir que clase va a querer para su personaje, lo
 que va a permitir mayor cantidad de posibilidades para lo que el jugador quiera
- experimentar en su partida, se elige hasta este punto ya que se necesita el 
+experimentar en su partida, se elige hasta este punto ya que se necesita el 
 modificador para calcular la vida del jugador
 """
 eleccion2 = int(input("¿Que clase quieres jugar? 1.Rogue, 2.Ranger, " + 
-"3.Barbarian, 4.Bard: "))
+"3.Barbarian, 4.Bard, 5.Cleric, 6.Druid, 7.Fighter, 8.Monk, 9.Paladin, " +
+"10.Sorcerer, 11.Wizard, 12.Artificier: "))
 
 if eleccion2 == 1:
     clase = ["Rogue","+2","1d8"]
     clase.append(8 + const_mod)
+    stats.append(clase)
 elif eleccion2 == 2:
     clase = ["Ranger","+2","1d10"]
-    calse.append(10 + const_mod)
+    clase.append(10 + const_mod)
+    stats.append(clase)
 elif eleccion2 == 3:
     clase = ["Barbarian","+2","1d12"]
-    calse.append(12 + const_mod)
-else:
+    clase.append(12 + const_mod)
+    stats.append(clase)
+elif eleccion2 == 4:
     clase = ["Bard","+2","1d8"]
     clase.append(8 + const_mod)
-
+    stats.append(clase)
+elif eleccion2 == 5:
+    clase = ["Cleric","+2","1d8"]
+    clase.append(8 + const_mod)
+    stats.append(clase)
+elif eleccion2 == 6:
+    clase = ["Druid","+2","1d8"]
+    clase.append(8 + const_mod)
+    stats.append(clase)
+elif eleccion2 == 7:
+    clase = ["Fighter","+2","1d10"]
+    clase.append(10 + const_mod)
+    stats.append(clase)
+elif eleccion2 == 8:
+    clase = ["Monk","+2","1d8"]
+    clase.append(8 + const_mod)
+    stats.append(clase)
+elif eleccion2 == 9:
+    clase = ["Paladin","+2","1d10"]
+    clase.append(10 + const_mod)
+    stats.append(clase)
+elif eleccion2 == 10:
+    clase = ["Sorcerer","+2","1d6"]
+    clase.append(6 + const_mod)
+    stats.append(clase)
+elif eleccion2 == 11:
+    clase = ["Warlock","+2","1d8"]
+    clase.append(8 + const_mod)
+    stats.append(clase)
+elif eleccion2 == 12:
+    clase = ["Wizard","+2","1d6"]
+    clase.append(6 + const_mod)
+    stats.append(clase)
+else:
+    clase = ["Artificier","+2","1d8"]
+    clase.append(8 + const_mod)
+    stats.append(clase)
+    
 nombre_p = str(input("Para terminar ¿cómo vas a llamar a tu personaje? "))
 
 """
@@ -167,12 +257,16 @@ Se le dan al usuario todas las estadisticas calculadas por el programa
 print ("Tu personaje esta listo!!")
 print ("Jugador: ", nombre_j)
 print ("Presonaje: ", nombre_p)
-print ("Tu raza es ", stats[7])
-print ("Tu clase es ", clase[0])
-print ("La velocidad de tu personaje es ", stats[6])
-print ("Bonus de competencia: ", clase[1])
-print ("Puntos de vida o hit dice: ", clase[3])
-print ("El dado que usarás para hacer daño o hit dice es:", clase[2])
+print ("Tu raza es ", stats[1][1])
+if eleccion1 == 8:
+    print ("Dragonic Ancestry: ", stats[1][2])
+    print ("Tipo de daño: ", stats[1][3])
+    print ("Rango de esta habilidad: ", stats[1][4])
+print ("Tu clase es ", stats[2][0])
+print ("La velocidad de tu personaje es ", stats[1][0])
+print ("Bonus de competencia: ", stats[2][1])
+print ("Puntos de vida o hit dice: ", stats[2][3])
+print ("El dado que usarás para hacer daño o hit dice es:", clase[2][2])
 print ("Tu score de habilidad en fuerza es: ", strg_sc, "y tu modificador es:",
 strg_mod)
 print ("Tu score de habilidad en destreza es: ", dex_sc, "y tu modificador",
