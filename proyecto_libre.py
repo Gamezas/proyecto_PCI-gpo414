@@ -194,7 +194,7 @@ modificador para calcular la vida del jugador
 """
 eleccion2 = int(input("¿Que clase quieres jugar? 1.Rogue, 2.Ranger, " + 
 "3.Barbarian, 4.Bard, 5.Cleric, 6.Druid, 7.Fighter, 8.Monk, 9.Paladin, " +
-"10.Sorcerer, 11.Wizard, 12.Artificier: "))
+"10.Sorcerer, 11.Warlock, 12.Wizard, 13.Artificier: "))
 
 if eleccion2 == 1:
     clase = ["Rogue","+2","1d8"]
