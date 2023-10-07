@@ -63,6 +63,39 @@ def rango ():
     return valor
 
 """
+Esta función es especial para la raza "Elfo", ya que esta raza puede elegir dos
+estadisticas de su gusto para aumentar un 1 punto de habilidad
+"""
+
+def eleccion_raza(eleccion_elfo,eleccion_elfo2,stats):
+    if eleccion_elfo == 1:
+        stats[0][0] = stats[0][0] + 1
+    elif eleccion_elfo == 2:
+        stats[0][1] = stats[0][1] + 1
+    elif eleccion_elfo == 3:
+        stats[0][2] = stats[0][2] + 1
+    elif eleccion_elfo == 4:
+        stats[0][3] = stats[0][3] + 1
+    elif eleccion_elfo == 5:
+        stats[0][4] = stats[0][4] + 1
+    elif eleccion_elfo == 6:
+        stats[0][5] = stats[0][5] + 1
+    
+    if eleccion_elfo2 == 1:
+        stats[0][0] = stats[0][0] + 1
+    elif eleccion_elfo2 == 2:
+        stats[0][1] = stats[0][1] + 1
+    elif eleccion_elfo2 == 3:
+        stats[0][2] = stats[0][2] + 1
+    elif eleccion_elfo2 == 4:
+        stats[0][3] = stats[0][3] + 1
+    elif eleccion_elfo2 == 5:
+        stats[0][4] = stats[0][4] + 1
+    elif eleccion_elfo2 == 6:
+        stats[0][5] = stats[0][5] + 1
+    return stats
+
+"""
 Aquí empieza el código, se le da la bienvenida al usuario y se toman sus datos
 para iniciar su personaje
 """
@@ -70,7 +103,7 @@ print("Bienvenido al simplificador de hoja de personaje de D&D")
 nombre_j = str(input("¿Cuál es tu nombre aventurero? "))
 eleccion1 = int(input("Selecciona con un número que raza te gustaría jugar" +
  " 1. Human, 2. Tiefling, 3.Halfling, 4.Dwarf, 5.Elf, 6.Gnome, " + 
- "7. Half-Orc 8.Dragonborn: "))
+ "7. Half-Orc 8.Dragonborn 9.Half-Elf: "))
 """
 Aquí el jugador elige una raza de las que ofrece el juego, todas tiene ciertos
 atributos a favor dando puntos extra de inicio en algunas habilidades, esto se
@@ -80,21 +113,21 @@ ya que se debe elegir una "Dragonic Ancestry" que es algo unico de esta raza
 por lo que tiene una función de elecciones extra a diferencia de las otras
 """
 if eleccion1 == 1:
-    stats = [[1,1,1,1,1,1],["30 ft","Humanos"]]
+    stats = [[1,1,1,1,1,1],["30 ft","Humanos","Medium"]]
 elif eleccion1 == 2:
-    stats = [[0,0,0,1,0,2],["30ft","Tiefling"]]
+    stats = [[0,0,0,1,0,2],["30ft","Tiefling","Medium"]]
 elif eleccion1 == 3:
-    stats = [[0,2,0,0,0,0],["25ft","Halfling"]]
+    stats = [[0,2,0,0,0,0],["25ft","Halfling","Small"]]
 elif eleccion1 == 4:
-    stats = [[0,0,2,0,0,0],["25ft","Dwarf"]]
+    stats = [[0,0,2,0,0,0],["25ft","Dwarf","Medium"]]
 elif eleccion1 == 5:
-    stats = [[0,2,0,0,0,0],["30ft","Elf"]]
+    stats = [[0,2,0,0,0,0],["30ft","Elf","Medium"]]
 elif eleccion1 == 6:
-    stats = [[0,0,0,0,2,0],["25ft","Gnome"]]
+    stats = [[0,0,0,0,2,0],["25ft","Gnome","Small"]]
 elif eleccion1 == 7:
-    stats = [[2,0,1,0,0,0],["30ft","Half-Orc"]]
+    stats = [[2,0,1,0,0,0],["30ft","Half-Orc","Medium"]]
 elif eleccion1 == 8:
-    stats = [[2,0,0,0,0,1],["30ft","Dragonborn"]]
+    stats = [[2,0,0,0,0,1],["30ft","Dragonborn","Medium"]]
     eleccion_drag = int(input("Elige que Dragonic Ancestry te gustaría " + 
     "1.Black, 2.Blue, 3.Brass, 4.Bronze, 5.Copper, 6.Gold, " +
     "7. Green, 8.Red, 9. Silver, 10. White: "))
@@ -138,6 +171,14 @@ elif eleccion1 == 8:
         stats[1].append("White")
         stats[1].append("Cold")
         stats[1].append("15 ft. cone (Con. save)")
+elif eleccion1 == 9:
+    stats = [[0,0,0,0,0,2],["30ft", "Half-Elf", "Medium"]]
+    eleccion_elfo = int(input("Esta raza te deja elegir 1 punto más en dos " +
+    "habilidades que gustes elige la primera 1.Fuerza 2.Destreza " +
+    "3. Constitución 4.Inteligencia 5.Sabiduría 6.Carisma: "))
+    eleccion_elfo2 = int(input("Elige la segunda 1.Fuerza 2.Destreza " +
+    "3. Constitución 4.Inteligencia 5.Sabiduría 6.Carisma: "))
+    stats = eleccion_raza(eleccion_elfo,eleccion_elfo2,stats)
 
 """
 Las estadísticas de D&D son medidas con una tirada de un dado de 20 caras
@@ -255,24 +296,27 @@ nombre_p = str(input("Para terminar ¿cómo vas a llamar a tu personaje? "))
 Se le dan al usuario todas las estadisticas calculadas por el programa
 """
 print ("Tu personaje esta listo!!")
+print ("\n/////////Características/////////\n")
 print ("Jugador: ", nombre_j)
 print ("Presonaje: ", nombre_p)
 print ("Tu raza es ", stats[1][1])
+print ("El tamaño de tu personaje es: ", stats[1][2])
 if eleccion1 == 8:
-    print ("Dragonic Ancestry: ", stats[1][2])
-    print ("Tipo de daño: ", stats[1][3])
-    print ("Rango de esta habilidad: ", stats[1][4])
+    print ("Dragonic Ancestry: ", stats[1][3])
+    print ("Tipo de daño: ", stats[1][4])
+    print ("Rango de esta habilidad: ", stats[1][5])
 print ("Tu clase es ", stats[2][0])
 print ("La velocidad de tu personaje es ", stats[1][0])
 print ("Bonus de competencia: ", stats[2][1])
 print ("Puntos de vida o hit dice: ", stats[2][3])
 print ("El dado que usarás para hacer daño o hit dice es:", clase[2][2])
+print ("\n/////////Estadisticas/////////\n")
 print ("Tu score de habilidad en fuerza es: ", strg_sc, "y tu modificador es:",
 strg_mod)
 print ("Tu score de habilidad en destreza es: ", dex_sc, "y tu modificador",
 "es: ", dex_mod)
-print ("Tu score de habilidad en constitución es: ", dex_sc, "y tu", 
-"modificador es: ", dex_mod)
+print ("Tu score de habilidad en constitución es: ", const_sc, "y tu", 
+"modificador es: ", const_mod)
 print ("Tu score de habilidad en inteligancia es: ", smart_sc, "y tu",
 "modificador es: ", smart_mod)
 print ("Tu score de habilidad en sabiduría es: ", wisd_sc, "y tu modificador",
