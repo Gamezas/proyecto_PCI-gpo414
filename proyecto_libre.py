@@ -62,8 +62,6 @@ def score (atributo,dado):
     """
     return atributo + dado
 
-
-
 def rango ():
     """
     (Uso de Ciclos while)
