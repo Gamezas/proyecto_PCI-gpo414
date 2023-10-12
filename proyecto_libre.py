@@ -1,8 +1,21 @@
 """
-El objetivo de esta función es calcular el modificador de las habilidades del
-jugador de froma rápida
+Proyecto Libre
+Hoje editable de D&D por medio de Python
+EL programa permite al usuario crear un personaje de D&D de una forma
+más comómoda y automática
+"""
+
+"""
+============Funciones de cálculos============
 """
 def modificador (num1):
+    """
+    (Uso de operadores, Uso de condicionales, Uso de estructuras de
+    desición)
+    recibe: num1 valor numérico
+    compara el valor de num1 
+    devuelve: un valor de modificador en base al valor de num1
+    """
     if num1 >= 0 and num1 <= 1:
         mod = 0 - 5
         return mod
@@ -40,22 +53,25 @@ def modificador (num1):
         mod = 0 + 6
         return mod
 
-"""
-Esta función aunque es simple permite calcular el score total del jugador en 
-una habilidad sumando el score fijo de su raza y lo conseguido en el dado
-"""
-
 def score (atributo,dado):
+    """
+    (Uso de operadores)
+    recibe: atributo valor numérico, dado valor numérico
+    suma ambos valores
+    devuelve: suma de los dos valores
+    """
     return atributo + dado
 
-"""
-Esta función permite simplificar el código y permitir el uso de ciclos con el
-objetivo que el usuario introduzca un valor correcto para así evitar que hagan
-trampa a la hora de generar su personaje por tener mejores estadisticas a las
-permitidas
-"""
+
 
 def rango ():
+    """
+    (Uso de Ciclos while)
+    No recibe datos
+    Pide un valor num´rico al jugador entre 1 y 20, si este valor no
+    cumple la condición, se le vuelve a pedir al jugador
+    Devuelve: el valor ingresado dentro del parámetro indicado
+    """
     valor = int(input())
     while valor < 1 or valor > 20:
         valor = int(input("El valor no puede ser menor a 1 o mayor a 20 " +
@@ -63,11 +79,17 @@ def rango ():
     return valor
 
 """
-Esta función es especial para la raza "Elfo", ya que esta raza puede elegir dos
-estadisticas de su gusto para aumentar un 1 punto de habilidad
+============Funciones auxiliares============
 """
 
 def eleccion_raza(eleccion_elfo,eleccion_elfo2,stats):
+    """
+    Recibe: eleccion_elfo valor numérico, eleccion_elfo2 valor numérico
+    stats lista anidada
+    Dependiendo el valor de eleccion_elfo y eleccion_elfo2 se le suma
+    1 punto a un valor específico de la lista
+    Devuelve: Lista modificada
+    """
     if eleccion_elfo == 1:
         stats[0][0] = stats[0][0] + 1
     elif eleccion_elfo == 2:
@@ -96,22 +118,17 @@ def eleccion_raza(eleccion_elfo,eleccion_elfo2,stats):
     return stats
 
 """
-Aquí empieza el código, se le da la bienvenida al usuario y se toman sus datos
-para iniciar su personaje
+============Parte principal del programa============
 """
+
 print("Bienvenido al simplificador de hoja de personaje de D&D")
-nombre_j = str(input("¿Cuál es tu nombre aventurero? "))
+nombre_j = str(input("¿Cuál es tu nombre jugador? "))
 eleccion1 = int(input("Selecciona con un número que raza te gustaría jugar" +
  " 1. Human, 2. Tiefling, 3.Halfling, 4.Dwarf, 5.Elf, 6.Gnome, " + 
  "7. Half-Orc 8.Dragonborn 9.Half-Elf: "))
-"""
-Aquí el jugador elige una raza de las que ofrece el juego, todas tiene ciertos
-atributos a favor dando puntos extra de inicio en algunas habilidades, esto se
-guarda en una lista llamada "stats" que busca llevar todos los datos del 
-jugador en una sola variable, la raza Dragonborn es un poco más especial
-ya que se debe elegir una "Dragonic Ancestry" que es algo unico de esta raza
-por lo que tiene una función de elecciones extra a diferencia de las otras
-"""
+
+#Se le da la oportunidad al jugador de elegir una raza
+
 if eleccion1 == 1:
     stats = [[1,1,1,1,1,1],["30 ft","Humanos","Medium"]]
 elif eleccion1 == 2:
@@ -127,6 +144,7 @@ elif eleccion1 == 6:
 elif eleccion1 == 7:
     stats = [[2,0,1,0,0,0],["30ft","Half-Orc","Medium"]]
 elif eleccion1 == 8:
+    #Esta raza permite más opciones que las otras
     stats = [[2,0,0,0,0,1],["30ft","Dragonborn","Medium"]]
     eleccion_drag = int(input("Elige que Dragonic Ancestry te gustaría " + 
     "1.Black, 2.Blue, 3.Brass, 4.Bronze, 5.Copper, 6.Gold, " +
@@ -172,6 +190,7 @@ elif eleccion1 == 8:
         stats[1].append("Cold")
         stats[1].append("15 ft. cone (Con. save)")
 elif eleccion1 == 9:
+    #Esta raza da uso a la función auxiliar
     stats = [[0,0,0,0,0,2],["30ft", "Half-Elf", "Medium"]]
     eleccion_elfo = int(input("Esta raza te deja elegir 1 punto más en dos " +
     "habilidades que gustes elige la primera 1.Fuerza 2.Destreza " +
@@ -180,17 +199,7 @@ elif eleccion1 == 9:
     "3. Constitución 4.Inteligencia 5.Sabiduría 6.Carisma: "))
     stats = eleccion_raza(eleccion_elfo,eleccion_elfo2,stats)
 
-"""
-Las estadísticas de D&D son medidas con una tirada de un dado de 20 caras
-aquí el usuario podra introducir los valores obtenido por sus tiradas y estas
-se añadiran más adelante con los atributos iniciales para así identificar 
-el modificador correcto
-
-Se aprovechan ciclos aquí ya que los valores de las tiradas no pueden ser 
-menores a 1 o mayores a 20, esto para evitar que los jugadores hagan trampa
-en la creación de sus estadísticas
-"""
-
+#El jugador ingresa los valores obtenidos por sus dados
 print("Tira un dado de 20 caras y valor escribelo aquí" +
 "este será tu valor de fuerza: ")
 strg = rango()
@@ -205,21 +214,15 @@ wisd = rango()
 print("Tira otro dado de 20 para tu valor de carisma: ")
 char = rango()
 
-"""
-Utilizando la función score sacamos el score total de las habilidades del 
-usuario
-"""
+#Se da uso de la función score
 strg_sc = score(stats[0][0],strg)
 dex_sc = score(stats[0][1],dex)
 const_sc = score(stats[0][2], const)
 smart_sc = score(stats[0][3],smart)
 wisd_sc = score(stats[0][4],wisd)
 char_sc = score(stats[0][5],char)
-"""
-Utilizando la función modificador conseguimos el valor del modificador de las
-habilidades del usuraio este modificador tiene cierta influencia en algunas
-estadísticas como la salud del jugador
-"""
+
+#Se da uso de la función modificador
 strg_mod = modificador(strg_sc)
 dex_mod = modificador(dex_sc)
 const_mod = modificador(const_sc)
@@ -227,12 +230,8 @@ smart_mod = modificador(smart_sc)
 wisd_mod = modificador(wisd_sc)
 char_mod = modificador(char_sc)
 
-"""
-Aquí el jugador va a poder elegir que clase va a querer para su personaje, lo
-que va a permitir mayor cantidad de posibilidades para lo que el jugador quiera
-experimentar en su partida, se elige hasta este punto ya que se necesita el 
-modificador para calcular la vida del jugador
-"""
+
+#El jugador tiene la oprtunidad de elegir la clase de su personaje
 eleccion2 = int(input("¿Que clase quieres jugar? 1.Rogue, 2.Ranger, " + 
 "3.Barbarian, 4.Bard, 5.Cleric, 6.Druid, 7.Fighter, 8.Monk, 9.Paladin, " +
 "10.Sorcerer, 11.Warlock, 12.Wizard, 13.Artificier: "))
@@ -292,9 +291,7 @@ else:
     
 nombre_p = str(input("Para terminar ¿cómo vas a llamar a tu personaje? "))
 
-"""
-Se le dan al usuario todas las estadisticas calculadas por el programa
-"""
+#El programa regresa los datos calculados
 print ("Tu personaje esta listo!!")
 print ("\n/////////Características/////////\n")
 print ("Jugador: ", nombre_j)
