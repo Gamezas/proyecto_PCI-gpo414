@@ -1,0 +1,54 @@
+Sub-Competencia: componente: aplica estructuras cíclicas para 
+resolver un problema de manera eficiente (avance 5)
+
+Error original: No se colocó un return al final de la función 
+while
+valor = int(input())
+while valor < 1 or valor > 20:
+    valor = int(input("El valor no puede ser menor a 1 o mayor a 20" + 
+    " vuelve a intentarlo: "))
+
+Cambio realizado: 
+valor = int(input())
+while valor < 1 or valor > 20:
+    valor = int(input("El valor no puede ser menor a 1 o mayor a 20" + 
+    " vuelve a intentarlo: "))
+	return valor
+
+Líneas de código donde se ve la corrección: línea 86
+
+============ Correción 2 ============
+Sub-competencia: Incorpora y explica nuevas funciones en su progra 
+e incluya su referencias al API de pythoon. (Revisión y Final)
+
+Error original: No se había integrado una biblioteca de Pyhton al 
+programa
+
+Error orginal: No se integro una biblioteca
+
+Cambio realizado:
+"""
+Biblioteca
+Python: https://docs.python.org/3/library/random.html
+Esta biblioteca se usará en la generación de numeros aleatorios para
+las estadísticas del jugador
+"""
+import random
+
+else:
+        """
+        Con ayuda de la librería random se puede usar la función 
+        "random.randrange()" para obtener un valor desde el 1 
+        (incluido) hasta el 21 (no incluido) esto para asimilar la
+        tirada de un dado de 20 caras
+        """
+        strg = (random.randrange(1, 21))
+        dex = (random.randrange(1, 21))
+        const = (random.randrange(1, 21))
+        smart = (random.randrange(1, 21))
+        wisd = (random.randrange(1, 21))
+        char = (random.randrange(1, 21))
+
+Líneas de código donde se ve la corrección:
+Líneas 8 a 14
+Líneas 230 a 242
